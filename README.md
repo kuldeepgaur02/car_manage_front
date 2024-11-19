@@ -1,171 +1,168 @@
 # 🚗 Car Management System
 
-A modern, responsive web application for managing vehicle inventory with user authentication, CRUD operations, and search functionality.
-
-## 🌟 Features
-
-- **🔐 Authentication**
-  - User registration and login
-  - Secure session management
-  - Protected routes
-
-- **🚘 Car Management**
-  - Create new car listings
-  - View car details
-  - Edit existing cars
-  - Delete car listings
-  - Image upload with preview
-
-- **🔍 Advanced Features**
-  - Search functionality
-  - Filtering options
-  - Responsive design
-  - Form validation
-
-## 🛠️ Tech Stack
-
-- **Frontend Framework:** React 18
-- **Styling:** Tailwind CSS
-- **UI Components:** shadcn/ui
-- **State Management:** React Context
-- **Routing:** React Router v6
-- **Form Handling:** React Hook Form
-- **HTTP Client:** Axios
-- **Icons:** Lucide React
-
-## 📋 Prerequisites
-
-Before you begin, ensure you have the following installed:
-- Node.js (v16.0 or higher)
-- npm or yarn
-- Git
-
-## 🚀 Getting Started
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/yourusername/car-management-frontend.git
-   cd car-management-frontend
-   ```
-
-2. **Install dependencies**
-   ```bash
-   npm install
-   # or
-   yarn install
-   ```
-
-3. **Set up environment variables**
-   ```bash
-   cp .env.example .env
-   ```
-   Update the `.env` file with your configuration:
-   ```
-   REACT_APP_API_URL=your_api_url
-   ```
-
-4. **Start the development server**
-   ```bash
-   npm run dev
-   # or
-   yarn dev
-   ```
-
-5. **Build for production**
-   ```bash
-   npm run build
-   # or
-   yarn build
-   ```
+A modern Vue.js application for managing vehicles with user authentication and CRUD operations.
 
 ## 📁 Project Structure
 
 ```
-src/
-├── components/           # Reusable UI components
-│   ├── auth/            # Authentication related components
-│   ├── cars/            # Car management components
-│   └── shared/          # Shared/common components
-├── contexts/            # React contexts
-├── hooks/               # Custom hooks
-├── pages/               # Page components
-├── services/           # API services
-├── styles/             # Global styles
-└── utils/              # Utility functions
+car-management-system/
+├── README.md
+├── eslint.config.js          # ESLint configuration
+├── index.html               # Entry HTML file
+├── jsconfig.json            # JavaScript configuration
+├── package-lock.json        # NPM lock file
+├── package.json            # Project dependencies and scripts
+├── postcss.config.js       # PostCSS configuration
+├── tailwind.config.js      # Tailwind CSS configuration
+├── vite.config.js          # Vite configuration
+│
+├── public/                 # Public assets
+│   └── favicon.ico        # Site favicon
+│
+└── src/                   # Source code
+    ├── App.vue            # Root Vue component
+    ├── main.js            # Application entry point
+    ├── store.js           # Vuex store configuration
+    │
+    ├── assets/           # Static assets
+    │   ├── base.css      # Base styles
+    │   ├── main.css      # Main stylesheet
+    │   └── logo.svg      # Logo asset
+    │
+    ├── components/       # Reusable components
+    │   ├── HelloWorld.vue
+    │   ├── TheWelcome.vue
+    │   ├── WelcomeItem.vue
+    │   └── icons/        # Icon components
+    │       ├── IconCommunity.vue
+    │       ├── IconDocumentation.vue
+    │       ├── IconEcosystem.vue
+    │       ├── IconSupport.vue
+    │       └── IconTooling.vue
+    │
+    ├── router/          # Vue Router configuration
+    │   └── index.js     # Route definitions
+    │
+    └── views/           # Page components
+        ├── HomeView.vue        # Home page
+        ├── AboutView.vue       # About page
+        ├── LoginView.vue       # Login page
+        ├── RegisterView.vue    # Registration page
+        ├── CreateCarView.vue   # Car creation page
+        └── EditCarView.vue     # Car editing page
 ```
 
-## 🔐 Authentication
+## 🚀 Getting Started
 
-The application uses JWT-based authentication. Protected routes require valid authentication tokens.
+1. **Install Dependencies**
+   ```bash
+   npm install
+   ```
 
-### Available Routes
+2. **Run Development Server**
+   ```bash
+   npm run dev
+   ```
+   Access the application at `http://localhost:5173`
 
-| Route | Access | Description |
-|-------|---------|------------|
-| `/` | Public | Home page |
-| `/login` | Public | User login |
-| `/register` | Public | New user registration |
-| `/cars` | Protected | Car listing page |
-| `/cars/new` | Protected | Create new car |
-| `/cars/:id` | Protected | Edit car details |
+3. **Build for Production**
+   ```bash
+   npm run build
+   ```
 
-## 🚗 Car Management
+## 🛠️ Technology Stack
 
-### Car Object Structure
+- **Framework:** Vue.js 3
+- **Build Tool:** Vite
+- **CSS Framework:** Tailwind CSS
+- **State Management:** Vuex
+- **Routing:** Vue Router
+- **Linting:** ESLint
 
-```typescript
-interface Car {
-  id: string;
-  make: string;
-  model: string;
-  year: number;
-  price: number;
-  description: string;
-  imageUrl?: string;
-  createdAt: Date;
-  updatedAt: Date;
+## 📋 Available Scripts
+
+```json
+{
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
+  }
 }
 ```
 
-## 🔍 Search and Filter
+## 🔐 Application Routes
 
-Users can search cars by:
-- Make
-- Model
-- Year
-- Price range
+| Route | View Component | Description |
+|-------|---------------|-------------|
+| `/` | `HomeView.vue` | Landing page |
+| `/about` | `AboutView.vue` | About page |
+| `/login` | `LoginView.vue` | User login |
+| `/register` | `RegisterView.vue` | User registration |
+| `/car/create` | `CreateCarView.vue` | Create new car |
+| `/car/edit/:id` | `EditCarView.vue` | Edit existing car |
 
-## 📱 Responsive Design
+## 💅 Styling
 
-The application is fully responsive and optimized for:
-- Desktop (1024px and above)
-- Tablet (768px to 1023px)
-- Mobile (below 768px)
+The project uses a combination of:
+- Tailwind CSS for utility-first styling
+- Base CSS (`assets/base.css`)
+- Main CSS (`assets/main.css`)
+
+Configure Tailwind using `tailwind.config.js`
+
+## 🔧 Configuration Files
+
+- **vite.config.js**: Vite bundler configuration
+- **eslint.config.js**: ESLint rules and settings
+- **postcss.config.js**: PostCSS plugins (including Tailwind)
+- **jsconfig.json**: JavaScript compilation settings
+
+## 📦 Components Structure
+
+### Icons
+Located in `src/components/icons/`:
+- `IconCommunity.vue`
+- `IconDocumentation.vue`
+- `IconEcosystem.vue`
+- `IconSupport.vue`
+- `IconTooling.vue`
+
+### Core Components
+Located in `src/components/`:
+- `HelloWorld.vue`
+- `TheWelcome.vue`
+- `WelcomeItem.vue`
+
+## 🔄 State Management
+
+The application uses Vuex for state management, configured in `src/store.js`
+
+## 📱 Views
+
+All page components are located in `src/views/`:
+- `HomeView.vue`: Main landing page
+- `AboutView.vue`: Information page
+- `LoginView.vue`: User authentication
+- `RegisterView.vue`: New user registration
+- `CreateCarView.vue`: Car creation form
+- `EditCarView.vue`: Car editing interface
 
 ## 🤝 Contributing
 
 1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
 
 ## 📜 License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+This project is licensed under the MIT License.
 
 ## 👨‍💻 Author
 
-Your Name  
-Email: your.email@example.com  
+Your Name
+Email: your.email@example.com
 GitHub: [@yourusername](https://github.com/yourusername)
-
-## 🙏 Acknowledgments
-
-- shadcn/ui for the beautiful UI components
-- The React team for the amazing framework
-- All contributors who helped with the project
-
-## 📞 Support
-
-For support, email support@example.com or create an issue in the GitHub repository.
