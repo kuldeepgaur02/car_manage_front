@@ -163,6 +163,6 @@ This project is licensed under the MIT License.
 
 ## 👨‍💻 Author
 
-Your Name
-Email: your.email@example.com
-GitHub: [@yourusername](https://github.com/yourusername)
+Kuldeep Raj Gour
+Email: kuldeepgour002@gmail.com
+
