@@ -100,8 +100,8 @@ car-management-system/
 | `/about` | `AboutView.vue` | About page |
 | `/login` | `LoginView.vue` | User login |
 | `/register` | `RegisterView.vue` | User registration |
-| `/car/create` | `CreateCarView.vue` | Create new car |
-| `/car/edit/:id` | `EditCarView.vue` | Edit existing car |
+| `/car` | `CreateCarView.vue` | Create new car |
+| `/car/:id` | `EditCarView.vue` | Edit existing car |
 
 ## 💅 Styling
 
