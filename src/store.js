@@ -56,7 +56,7 @@ const store = createStore({
   actions: {
     async login({ commit }, credentials) {
       try {
-        const response = await axios.post('http://localhost:5001/api/auth/login', credentials); // Replace with your API URL
+        const response = await axios.post('https://car-manage-backend-git-main-kuldeep-gours-projects.vercel.app/api/auth/login', credentials);
         commit('setUser', response.data.user);
         localStorage.setItem("Token", response.data.token)
         return true;
@@ -67,12 +67,12 @@ const store = createStore({
     },
     async register({ commit }, userData) {
         try {
-          const response = await axios.post('http://localhost:5001/api/auth/register', userData); // Make the POST request using Axios
+          const response = await axios.post('https://car-manage-backend-git-main-kuldeep-gours-projects.vercel.app/api/auth/register', userData);
   
           if (response.status === 201) {
             const user = response.data;
-            commit('setUser', user); // Store the user data if registration is successful
-            commit('clearErrorMessage'); // Clear any previous error messages
+            commit('setUser', user);
+            commit('clearErrorMessage');
             return true;
           } else {
             commit('setErrorMessage', 'Registration failed. Please try again.');
@@ -88,11 +88,11 @@ const store = createStore({
         commit('setIsLoading', true);
         commit('clearErrorMessage');
         try {
-          const response = await axios.get('http://localhost:5001/api/cars', {
+          const response = await axios.get('https://car-manage-backend-git-main-kuldeep-gours-projects.vercel.app/api/cars', {
             headers: {
               'Authorization': `Bearer ${localStorage.getItem('Token')}`
             },
-          }); // Assuming API endpoint to fetch companies
+          });
           commit('setCars', response.data);
         } catch (error) {
           commit('setErrorMessage', 'Failed to load companies. Please try again.');
@@ -106,37 +106,26 @@ const store = createStore({
           commit('setIsSubmitting', true);
           commit('clearErrorMessage');
           commit('clearSuccessMessage');
-        console.log(car)
           const formData = new FormData();
           formData.append('title', car.title);
           formData.append('description', car.description);
-          console.log({
-            car_type: car.tags.car_type,
-            company: car.tags.company,
-            dealer: car.tags.dealer
-          })
           formData.append('tags', JSON.stringify({
             car_type: car.tags.car_type,
             company: car.tags.company,
             dealer: car.tags.dealer
           }));
-        //   formData.append('tags.car_type', car.tags.car_type);
-        //   formData.append('tags.company', car.tags.company);
-        //   formData.append('tags.dealer', car.tags.dealer);
-  
-          // Append all images to FormData
+
           car.images.forEach((image) => {
             formData.append('images', image);
           });
-  
-          // POST request to API to create car
-          const response = await axios.post('http://localhost:5001/api/cars', formData, {
+
+          const response = await axios.post('https://car-manage-backend-git-main-kuldeep-gours-projects.vercel.app/api/cars', formData, {
             headers: {
               'Content-Type': 'multipart/form-data',
               'Authorization': `Bearer ${localStorage.getItem('Token')}`
             },
           });
-  
+
           if (response.status === 201) {
             commit('setSuccessMessage', 'Car created successfully!');
           }
@@ -152,56 +141,45 @@ const store = createStore({
           commit('setIsSubmitting', true);
           commit('clearErrorMessage');
           commit('clearSuccessMessage');
-          const car = payload.car
+          const car = payload.car;
           const formData = new FormData();
           formData.append('title', car.title);
           formData.append('description', car.description);
-          console.log({
-            car_type: car.tags.car_type,
-            company: car.tags.company,
-            dealer: car.tags.dealer
-          })
           formData.append('tags', JSON.stringify({
             car_type: car.tags.car_type,
             company: car.tags.company,
             dealer: car.tags.dealer
           }));
-        //   formData.append('tags.car_type', car.tags.car_type);
-        //   formData.append('tags.company', car.tags.company);
-        //   formData.append('tags.dealer', car.tags.dealer);
-  
-          // Append all images to FormData
+
           car.images.forEach((image) => {
             formData.append('images', image);
           });
-  
-          // POST request to API to create car
-          const response = await axios.patch(`http://localhost:5001/api/cars/${payload.id}`, formData, {
+
+          const response = await axios.patch(`https://car-manage-backend-git-main-kuldeep-gours-projects.vercel.app/api/cars/${payload.id}`, formData, {
             headers: {
               'Content-Type': 'multipart/form-data',
               'Authorization': `Bearer ${localStorage.getItem('Token')}`
             },
           });
-  
+
           if (response.status === 201) {
-            commit('setSuccessMessage', 'Car created successfully!');
+            commit('setSuccessMessage', 'Car updated successfully!');
           }
         } catch (error) {
-          commit('setErrorMessage', 'Failed to create car. Please try again.');
-          console.error('Car creation error:', error);
+          commit('setErrorMessage', 'Failed to update car. Please try again.');
+          console.error('Car update error:', error);
         } finally {
           commit('setIsSubmitting', false);
         }
       },
       async deleteCar({ commit }, carId) {
         try {
-          // Call API to delete the car
-          await axios.delete(`http://localhost:5001/api/cars/${carId}`, {
+          await axios.delete(`https://car-manage-backend-git-main-kuldeep-gours-projects.vercel.app/api/cars/${carId}`, {
             headers: {
               'Authorization': `Bearer ${localStorage.getItem('Token')}`
             },
-          }); // Assuming this is the correct API endpoint
-          commit('removeCar', carId); // Update the state after successful deletion
+          });
+          commit('removeCar', carId);
         } catch (error) {
           commit('setErrorMessage', 'Failed to delete car. Please try again.');
         }
